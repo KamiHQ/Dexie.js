@@ -50,6 +50,7 @@ export function dexieOpen (db: Dexie) {
     if (!indexedDB) throw new exceptions.MissingAPI();
     const dbName = db.name;
     
+    console.log("dexie-open.ts - indexedDB.open called"); // Just temporary, to nail down where the slow dexie opening happens
     const req = state.autoSchema ?
       indexedDB.open(dbName) :
       indexedDB.open(dbName, Math.round(db.verno * 10));
@@ -80,6 +81,7 @@ export function dexieOpen (db: Dexie) {
     }, reject);
     
     req.onsuccess = wrap (() => {
+        console.log("dexie-open.ts - onsuccess called"); // Just temporary, to nail down where the slow dexie opening happens
         // Core opening procedure complete. Now let's just record some stuff.
         upgradeTransaction = null;
         const idbdb = db._novip.idbdb = req.result; // db._novip is because db can be an Object.create(origDb).
