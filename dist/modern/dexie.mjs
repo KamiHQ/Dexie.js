@@ -4,7 +4,7 @@
  *
  * By David Fahlander, david.fahlander@gmail.com
  *
- * Version 3.2.7, Wed Mar 20 2024
+ * Version 3.2.7, Tue Feb 25 2025
  *
  * https://dexie.org
  *
@@ -3628,6 +3628,7 @@ function dexieOpen(db) {
         if (!indexedDB)
             throw new exceptions.MissingAPI();
         const dbName = db.name;
+        console.log("dexie-open.ts - indexedDB.open called");
         const req = state.autoSchema ?
             indexedDB.open(dbName) :
             indexedDB.open(dbName, Math.round(db.verno * 10));
@@ -3655,6 +3656,7 @@ function dexieOpen(db) {
             }
         }, reject);
         req.onsuccess = wrap(() => {
+            console.log("dexie-open.ts - onsuccess called");
             upgradeTransaction = null;
             const idbdb = db._novip.idbdb = req.result;
             const objectStoreNames = slice(idbdb.objectStoreNames);

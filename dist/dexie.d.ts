@@ -4,7 +4,7 @@
  *
  * By David Fahlander, david.fahlander@gmail.com
  *
- * Version 3.2.7, Wed Mar 20 2024
+ * Version 3.2.7, Tue Feb 25 2025
  *
  * https://dexie.org
  *
